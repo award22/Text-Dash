@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Replacer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="text-replacer-form">
+        <h1>Text Replacer</h1>
+        <label for="input-text">Paste your text here:</label>
+        <br>
+        <textarea id="input-text" rows="6" cols="50"></textarea>
+        <br>
+        <button type="submit">Replace Commas and Spaces</button>
+        <br>
+        <label for="output-text">Output:</label>
+        <br>
+        <textarea id="output-text" rows="6" cols="50" readonly></textarea>
+    </form>
+
+    <script>
+        function replaceCommasAndSpaces(text) {
+            const withoutCommas = text.replace(/,/g, '');
+            const withDashes = withoutCommas.replace(/ /g, '-');
+            return withDashes;
+        }
+
+        const form = document.getElementById('text-replacer-form');
+        const inputText = document.getElementById('input-text');
+        const outputText = document.getElementById('output-text');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = inputText.value;
+            const result = replaceCommasAndSpaces(input);
+            outputText.value = result;
+        });
+    </script>
+</body>
+</html>
